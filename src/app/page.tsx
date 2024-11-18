@@ -11,6 +11,7 @@ export default function PokemonList() {
   const [allPokemonData, setAllPokemonData] = useState<Pokemon[]>([]); // Lista completa
   const [filteredPokemonList, setFilteredPokemonList] = useState<PokemonDetails[]>([]); // Lista filtrada de detalles
   const [loading, setLoading] = useState<boolean>(true); // Estado de carga
+  const [errorMessage, setErrorMessage] = useState<string>(""); // Mensajes de error
   const [offset, setOffset] = useState<number>(0); // Offset para la paginación
   const [totalPokemon, setTotalPokemon] = useState<number>(0);
   const [canLoadMore, setCanLoadMore] = useState<boolean>(true); // Si hay más para cargar
@@ -75,7 +76,7 @@ export default function PokemonList() {
   // fetchInitialPokemon solo una vez cuando el componente se monta
   useEffect(() => {
     setLoading(true);
-    startTransition(() => {
+    startTransition(() => { // Reduce tiempo de bloqueo
       fetchInitialPokemon();
     });
   }, []);
@@ -92,6 +93,7 @@ export default function PokemonList() {
     if (!searchValue) return;
 
     setLoading(true);
+    setErrorMessage("");
     setOffset(0);
     try {
       let allData = allPokemonData;
@@ -117,7 +119,12 @@ export default function PokemonList() {
           };
         })
       );
-
+      if(filteredData.length === 0){
+        setErrorMessage("No hay ningún Pokémon con ese nombre. Intenta con otro.");
+        setTimeout(function(){
+          setErrorMessage("");
+        }, 5000)
+      }
       startTransition(() => {
         setFilteredPokemonList(filteredData);
         setTotalPokemon(filtered.length);
@@ -134,6 +141,7 @@ export default function PokemonList() {
   return (
     <div className="page">
       {loading && <div className='loader' data-testid="loader"></div>}
+      {errorMessage && <div className='error'>{errorMessage}</div> }
       <header className="header">
         <h1>Pokédex</h1>
         <h2>Indica el nombre del Pokémon que quieras buscar</h2>

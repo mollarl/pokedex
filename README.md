@@ -20,11 +20,9 @@ Abrir en el browser: [http://localhost:3000](http://localhost:3000)
 
 ```bash
 npm run build
-```
-
-```bash
 npm start
 ```
+Abrir en el browser: [http://localhost:8080](http://localhost:8080)
 
 ### Para correr test:
 

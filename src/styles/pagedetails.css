@@ -1,0 +1,66 @@
+.page.page-details {
+    padding: 150px 0 40px 0;
+    display: block;
+}
+.header.header-details{
+    height: 100px;
+}
+.page-details .card {
+    width: calc(100% - 36px);
+}
+.card-img-container{
+    display: flex;
+}
+.stats-container {
+  margin-top: 20px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.stat-name {
+  flex: 1;
+  font-weight: bold;
+}
+
+.stat-bar {
+  flex: 2;
+  height: 10px;
+  background-color: var(--background-body);
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 10px;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+
+.stat-value {
+  flex: 0.5;
+  text-align: right;
+  font-weight: bold;
+}
+
+.fixed-link {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 22px;
+    text-transform: uppercase;
+    line-height: 50px;
+}
+.fixed-link:hover {
+    background: var(--button-hover);
+    text-decoration: none;
+}

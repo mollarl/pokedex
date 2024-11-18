@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "jsx": "react-jsx", // Asegúrate de usar react-jsx aquí
+    "jsx": "react-jsx",
     "esModuleInterop": true
   },
   "include": [

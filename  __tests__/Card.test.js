@@ -2,7 +2,6 @@ import { render, screen, waitFor } from '@testing-library/react';
 import PokemonDisplay from '../src/app/components/PokemonDisplay';
 import axios from 'axios';
 
-// Mockear axios
 jest.mock('axios');
 
 test('Debe renderizar la lista de pokemones', async () => {
@@ -14,10 +13,10 @@ test('Debe renderizar la lista de pokemones', async () => {
     ]
   });
 
-  // Renderizar el componente con los datos mockeados
+  // Renderizar el componente con los datos mockeados y un término de búsqueda vacío
   render(
     <PokemonDisplay 
-      initialPokemonList={[
+      pokemonList={[
         { name: 'bulbasaur', image: '/bulbasaur.png', abilities: ['overgrow'], types: ['grass', 'poison'] },
         { name: 'charmander', image: '/charmander.png', abilities: ['blaze'], types: ['fire'] },
       ]}
@@ -25,7 +24,7 @@ test('Debe renderizar la lista de pokemones', async () => {
     />
   );
 
-  // Esperar a que los elementos de los Pokémon sean renderizados
+
   await waitFor(() => {
     const bulbasaur = screen.getByTestId('pokemon-name-bulbasaur');
     const charmander = screen.getByTestId('pokemon-name-charmander');
@@ -33,4 +32,18 @@ test('Debe renderizar la lista de pokemones', async () => {
     expect(bulbasaur).toBeInTheDocument();
     expect(charmander).toBeInTheDocument();
   });
+});
+
+test('Debe mostrar mensaje cuando no se encuentran pokemones con el nombre de búsqueda', async () => {
+  // Renderizar el componente con un término de búsqueda que no coincida con ningún Pokemon
+  render(
+    <PokemonDisplay 
+      pokemonList={[]}
+      searchTerm="xxxxx"
+    />
+  );
+
+  // Verificar que el mensaje de "no se encontraron pokemones" se muestra
+  const message = screen.getByTestId('detail-heading');
+  expect(message).toBeInTheDocument();
 });

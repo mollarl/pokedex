@@ -25,20 +25,6 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-.error{
-    position: fixed;
-    top: 240px;
-    display: block;
-    left: 16px;
-    right: 16px;
-    background: rgba(255, 255, 255, .9);
-    padding: 10px;
-    border: 1px solid red;
-    border-radius: 8px;
-    box-shadow: 1px 6px 12px rgba(0, 0, 0, .3);
-    color: red;
-    font-weight: 600;
-}
 
 .header {
   background-color: var(--primary-color);
@@ -74,7 +60,11 @@
   line-height: 40px;
   margin: 0;
 }
-
+.detail-heading{
+  margin: 10px 20px;
+    font-weight: 500;
+    font-size: x-large;
+}
 .search-container {
   display: flex;
   justify-content: center;
